@@ -3,7 +3,7 @@
  */
 (function($) {
 
-    $.fn.visa = function(action,options){
+    $.fn.drag = function(action,options){
 
         options = $.extend({
             container:{
