@@ -29,7 +29,7 @@
                 },
                 color:"#000000",
                 "background-color":"#ffffff",
-                text: "VISA",
+                text: "Drag Me",
                 posX:100,
                 posY:100
             }
