@@ -6,33 +6,22 @@
     $.fn.drag = function(action,options){
 
         options = $.extend({
-            container:{
-                height:"594px",
-                width:"420px",
-                verticalPadding:"10px",
-                horizontalPadding:"10px",
-                border:{
-                    style:"solid",
-                    width:"1px",
-                    color:"#000000"
-                },
-                color:"#000000",
-                bgCol:"#ffffff"
-            },
-            draggable:{
-                height:"32px",
-                width:"64px",
-                border:{
-                    style:"solid",
-                    width:"1px",
-                    color:"#000000"
-                },
-                color:"#000000",
-                "background-color":"#ffffff",
-                text: "Drag Me",
+                cHeight:"594px",
+                cWidth:"420px",
+                cVerticalPadding:"10px",
+                cHorizontalPadding:"10px",
+                cBorder:"solid 1px #000000",
+                cColor:"#000000",
+                cBgCol:"#ffffff",
+                dHeight:"32px",
+                dWidth:"64px",
+                dBorder: "solid 1px #000000",
+                dColor:"#000000",
+                dBgCol:"#ffffff",
+                dText: "Drag Me",
                 posX:100,
                 posY:100
-            }
+
         }, options);
 
         if (action == "getPosX") {
@@ -43,10 +32,12 @@
             return Math.trunc($('.draggable').offset().top - $('.draggable').parent().offset().top).toString();
         }
 
-        return this.each(function() {
+		if(action == "init")
+		{
+			return this.each(function() {
             $(this).addClass('visaContainer');
             $(this).empty();
-            $(this).append('<div class="draggable ui-widget-content text-center">'+options.draggable.text+'</div>');
+            $(this).append('<div class="draggable ui-widget-content text-center">'+options.dText+'</div>');
 
             $('.draggable').draggable({
                 containment:"parent"
@@ -54,31 +45,33 @@
 
             $('.visaContainer').css({
 
-                height:options.container.height,
-                width:options.container.width,
-                "padding-top": options.container.verticalPadding,
-                "padding-left": options.container.horizontalPadding,
-                "padding-bottom": options.container.verticalPadding,
-                "padding-right": options.container.horizontalPadding,
-                border: options.container.border.width+" "+options.container.border.style+" "+options.container.border.color,
-                color: options.container.color,
-                "background-color": options.container.bgCol
+                height:options.cHeight,
+                width:options.cWidth,
+                "padding-top": options.cVerticalPadding,
+                "padding-left": options.cHorizontalPadding,
+                "padding-bottom": options.cVerticalPadding,
+                "padding-right": options.cHorizontalPadding,
+                border: options.cBorder,
+                color: options.cColor,
+                "background-color": options.cBgCol
             });
 
-            var padTop = parseInt(options.container.verticalPadding.substr(0,options.container.verticalPadding.length-2));
-            var padLeft = parseInt(options.container.horizontalPadding.substr(0,options.container.horizontalPadding.length-2));
+            var padTop = parseInt(options.cVerticalPadding.substr(0,options.cVerticalPadding.length-2));
+            var padLeft = parseInt(options.cHorizontalPadding.substr(0,options.cHorizontalPadding.length-2));
 
             $('.draggable').css({
                 position: "relative",
-                top: options.draggable.posY - padTop ,
-                left: options.draggable.posX - padLeft,
-                height:options.draggable.height,
-                width:options.draggable.width,
-                border: options.draggable.border.width+" "+options.draggable.border.style+" "+options.draggable.border.color,
-                color: options.draggable.color,
-                "background-color": options.draggable.bgCol
+                top: options.posY - padTop ,
+                left: options.posX - padLeft,
+                height:options.dHeight,
+                width:options.dWidth,
+                border: options.dBorder,
+                color: options.dColor,
+                "background-color": options.dBgCol
             });
         });
+		}
+        
     };
 
 })(jQuery);
